@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Dish list</h1>
+
+  {% if dishes %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Dish type</th>
+        <th>Price</th>
+      </tr>
+
+      {% for dish in dishes %}
+        <tr>
+          <td>{{ dish.name }}</td>
+          <td>{{ dish.dish_type }}</td>
+          <td>{{ dish.price }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no dishes in the restaurant.</p>
+  {% endif %}
+{% endblock %}

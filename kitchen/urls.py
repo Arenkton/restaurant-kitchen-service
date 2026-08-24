@@ -12,4 +12,9 @@ urlpatterns = [
         views.DishTypeListView.as_view(),
         name="dish-type-list",
     ),
+    path(
+        "dishes/",
+        views.DishListView.as_view(),
+        name="dish-list",
+    ),
 ]

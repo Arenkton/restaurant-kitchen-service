@@ -5,6 +5,10 @@ from django.contrib.auth.models import AbstractUser
 class Cook(AbstractUser):
     years_of_experience = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        verbose_name = "cook"
+        verbose_name_plural = "cooks"
+
 
 class DishType(models.Model):
     name = models.CharField(max_length=100)

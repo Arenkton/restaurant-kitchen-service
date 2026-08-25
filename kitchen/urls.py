@@ -17,4 +17,9 @@ urlpatterns = [
         views.DishListView.as_view(),
         name="dish-list",
     ),
+    path(
+        "cooks/",
+        views.CookListView.as_view(),
+        name="cook-list"
+    ),
 ]

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
-from kitchen.models import DishType, Dish
+from kitchen.models import DishType, Dish, Cook
 
 
 def index(request):
@@ -19,3 +19,9 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     context_object_name = "dishes"
     template_name = "kitchen/dish_list.html"
+
+
+class CookListView(LoginRequiredMixin, generic.ListView):
+    model = Cook
+    context_object_name = "cooks"
+    template_name = "kitchen/cook_list.html"

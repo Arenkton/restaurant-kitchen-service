@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <h1>
+    Dish types
+    <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-primary">
+      Create
+    </a>
+  </h1>
+
   {% if dish_types %}
     <table class="table">
       <tr>
@@ -9,13 +16,11 @@
 
       {% for dish_type in dish_types %}
         <tr>
-            <td>
-                {{ dish_type.name }}
-            </td>
+          <td>{{ dish_type.name }}</td>
         </tr>
       {% endfor %}
     </table>
   {% else %}
-  <p>There are no dish types yet.</p>
+    <p>There are no dish types yet.</p>
   {% endif %}
 {% endblock %}

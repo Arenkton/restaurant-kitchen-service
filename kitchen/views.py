@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
+from django.urls import reverse_lazy
 
+from kitchen.forms import DishTypeForm
 from kitchen.models import DishType, Dish, Cook
 
 
@@ -13,6 +15,13 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_types"
     template_name = "kitchen/dish_type_list.html"
+
+
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    form_class = DishTypeForm
+    template_name = "kitchen/dish_type_form.html"
+    success_url = reverse_lazy("kitchen:dish-type-list")
 
 
 class DishListView(LoginRequiredMixin, generic.ListView):

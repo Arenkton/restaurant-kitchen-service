@@ -13,6 +13,11 @@ urlpatterns = [
         name="dish-type-list",
     ),
     path(
+        "types/create/",
+        views.DishTypeCreateView.as_view(),
+        name="dish-type-create",
+    ),
+    path(
         "dishes/",
         views.DishListView.as_view(),
         name="dish-list",

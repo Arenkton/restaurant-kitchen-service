@@ -24,7 +24,9 @@
     <ul>
       {% for cook in dish.cooks.all %}
         <li>
-          {{ cook.username }}
+          <a href="{% url 'kitchen:cook-detail' pk=cook.pk %}">
+            {{ cook.username }}
+          </a>
         </li>
       {% endfor %}
     </ul>

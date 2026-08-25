@@ -27,4 +27,9 @@ urlpatterns = [
         views.CookListView.as_view(),
         name="cook-list",
     ),
+    path(
+        "cooks/<int:pk>/",
+        views.CookDetailView.as_view(),
+        name="cook-detail",
+    ),
 ]

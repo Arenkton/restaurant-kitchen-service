@@ -21,6 +21,12 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     template_name = "kitchen/dish_list.html"
 
 
+class DishDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Dish
+    context_object_name = "dish"
+    template_name = "kitchen/dish_detail.html"
+
+
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     context_object_name = "cooks"

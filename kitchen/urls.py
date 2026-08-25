@@ -18,8 +18,13 @@ urlpatterns = [
         name="dish-list",
     ),
     path(
+        "dishes/<int:pk>/",
+        views.DishDetailView.as_view(),
+        name="dish-detail",
+    ),
+    path(
         "cooks/",
         views.CookListView.as_view(),
-        name="cook-list"
+        name="cook-list",
     ),
 ]

@@ -13,7 +13,11 @@
 
       {% for dish in dishes %}
         <tr>
-          <td>{{ dish.name }}</td>
+          <td>
+            <a href="{% url 'kitchen:dish-detail' pk=dish.pk %}">
+              {{ dish.name }}
+            </a>
+          </td>
           <td>{{ dish.dish_type }}</td>
           <td>{{ dish.price }}</td>
         </tr>

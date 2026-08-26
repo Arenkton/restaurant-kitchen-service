@@ -67,4 +67,9 @@ urlpatterns = [
         views.CookDetailView.as_view(),
         name="cook-detail",
     ),
+    path(
+        "cooks/<int:pk>/update/",
+        views.CookUpdateView.as_view(),
+        name="cook-update",
+    ),
 ]

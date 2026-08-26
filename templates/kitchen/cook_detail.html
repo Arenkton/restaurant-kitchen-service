@@ -3,6 +3,12 @@
 {% block content %}
   <h1>{{ cook.username }}</h1>
 
+  <a
+  href="{% url 'kitchen:cook-update' pk=cook.pk %}"
+  class="btn btn-secondary">
+    Update
+  </a>
+
   <p>
     <strong>First name:</strong>
     {{ cook.first_name }}

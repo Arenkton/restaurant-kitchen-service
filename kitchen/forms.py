@@ -16,6 +16,18 @@ class CookCreationForm(UserCreationForm):
         ]
 
 
+class CookUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Cook
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "years_of_experience",
+        ]
+
+
 class DishTypeForm(forms.ModelForm):
     class Meta:
         model = DishType

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Cook, DishType, Dish
+from .models import Cook, DishType, Dish, Ingredient
 
 
 @admin.register(Cook)
@@ -33,3 +33,7 @@ class DishAdmin(admin.ModelAdmin):
 class DishTypeAdmin(admin.ModelAdmin):
     search_fields = ("name",)
 
+
+@admin.register(Ingredient)
+class IngredientAdmin(admin.ModelAdmin):
+    search_fields = ("name",)

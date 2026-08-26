@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Dish list</h1>
+  <h1>
+    Dish list
+    <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary">
+      Create
+    </a>
+  </h1>
 
   {% if dishes %}
     <table class="table">

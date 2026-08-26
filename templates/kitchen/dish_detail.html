@@ -1,63 +1,88 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    {{ dish.name }}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">{{ dish.name }}</h1>
 
-    <a
-      href="{% url 'kitchen:dish-update' pk=dish.pk %}"
-      class="btn btn-secondary"
-    >
-      Update
-    </a>
+    <div>
+      <a
+        href="{% url 'kitchen:dish-update' pk=dish.pk %}"
+        class="btn btn-secondary"
+      >
+        Update
+      </a>
 
-    <a
-      href="{% url 'kitchen:dish-delete' pk=dish.pk %}"
-      class="btn btn-danger"
-    >
-      Delete
-    </a>
-  </h1>
+      <a
+        href="{% url 'kitchen:dish-delete' pk=dish.pk %}"
+        class="btn btn-danger"
+      >
+        Delete
+      </a>
+    </div>
+  </div>
 
-  <p>
-    <strong>Dish type:</strong>
-    {{ dish.dish_type }}
-  </p>
+  <div class="card mb-4">
+    <div class="card-header">
+      Dish information
+    </div>
 
-  <p>
-    <strong>Price:</strong>
-    {{ dish.price }}
-  </p>
+    <div class="card-body">
+      <p>
+        <strong>Dish type:</strong>
+        {{ dish.dish_type }}
+      </p>
 
-  <p>
-    <strong>Description:</strong>
-    {{ dish.description }}
-  </p>
+      <p>
+        <strong>Price:</strong>
+        {{ dish.price }}
+      </p>
 
-  <h3>Cooks</h3>
+      <p class="mb-0">
+        <strong>Description:</strong>
+        {{ dish.description }}
+      </p>
+    </div>
+  </div>
 
-  {% if dish.cooks.all %}
-    <ul>
-      {% for cook in dish.cooks.all %}
-        <li>
-          <a href="{% url 'kitchen:cook-detail' pk=cook.pk %}">
-            {{ cook.username }}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No cooks are assigned to this dish.</p>
-  {% endif %}
-  <h3>Ingredients</h3>
+  <div class="card mb-4">
+    <div class="card-header">
+      Cooks
+    </div>
 
-  {% if dish.ingredients.all %}
-    <ul>
-      {% for ingredient in dish.ingredients.all %}
-        <li>{{ ingredient.name }}</li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No ingredients are assigned to this dish.</p>
-  {% endif %}
+    <div class="card-body">
+      {% if dish.cooks.all %}
+        <ul class="list-group list-group-flush">
+          {% for cook in dish.cooks.all %}
+            <li class="list-group-item px-0">
+              <a href="{% url 'kitchen:cook-detail' pk=cook.pk %}">
+                {{ cook.username }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="mb-0">No cooks are assigned to this dish.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      Ingredients
+    </div>
+
+    <div class="card-body">
+      {% if dish.ingredients.all %}
+        <ul class="list-group list-group-flush">
+          {% for ingredient in dish.ingredients.all %}
+            <li class="list-group-item px-0">
+              {{ ingredient.name }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="mb-0">No ingredients are assigned to this dish.</p>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}

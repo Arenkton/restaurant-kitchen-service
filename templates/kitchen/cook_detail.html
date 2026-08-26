@@ -1,57 +1,73 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    {{ cook.username }}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">{{ cook.username }}</h1>
 
-    <a
-      href="{% url 'kitchen:cook-update' pk=cook.pk %}"
-      class="btn btn-secondary"
-    >
-      Update
-    </a>
+    <div>
+      <a
+        href="{% url 'kitchen:cook-update' pk=cook.pk %}"
+        class="btn btn-secondary"
+      >
+        Update
+      </a>
 
-    <a
-      href="{% url 'kitchen:cook-delete' pk=cook.pk %}"
-      class="btn btn-danger"
-    >
-      Delete
-    </a>
-  </h1>
+      <a
+        href="{% url 'kitchen:cook-delete' pk=cook.pk %}"
+        class="btn btn-danger"
+      >
+        Delete
+      </a>
+    </div>
+  </div>
 
-  <p>
-    <strong>First name:</strong>
-    {{ cook.first_name }}
-  </p>
+  <div class="card mb-4">
+    <div class="card-header">
+      Cook information
+    </div>
 
-  <p>
-    <strong>Last name:</strong>
-    {{ cook.last_name }}
-  </p>
+    <div class="card-body">
+      <p>
+        <strong>First name:</strong>
+        {{ cook.first_name|default:"—" }}
+      </p>
 
-  <p>
-    <strong>Email:</strong>
-    {{ cook.email }}
-  </p>
+      <p>
+        <strong>Last name:</strong>
+        {{ cook.last_name|default:"—" }}
+      </p>
 
-  <p>
-    <strong>Years of experience:</strong>
-    {{ cook.years_of_experience }}
-  </p>
+      <p>
+        <strong>Email:</strong>
+        {{ cook.email|default:"—" }}
+      </p>
 
-  <h3>Dishes</h3>
+      <p class="mb-0">
+        <strong>Years of experience:</strong>
+        {{ cook.years_of_experience }}
+      </p>
+    </div>
+  </div>
 
-  {% if cook.dish_set.all %}
-    <ul>
-      {% for dish in cook.dish_set.all %}
-        <li>
-          <a href="{% url 'kitchen:dish-detail' pk=dish.pk %}">
-            {{ dish.name }}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>This cook is not assigned to any dishes.</p>
-  {% endif %}
+  <div class="card mb-4">
+    <div class="card-header">
+      Dishes
+    </div>
+
+    <div class="card-body">
+      {% if cook.dish_set.all %}
+        <ul class="list-group list-group-flush">
+          {% for dish in cook.dish_set.all %}
+            <li class="list-group-item px-0">
+              <a href="{% url 'kitchen:dish-detail' pk=dish.pk %}">
+                {{ dish.name }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="mb-0">This cook has no assigned dishes.</p>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}

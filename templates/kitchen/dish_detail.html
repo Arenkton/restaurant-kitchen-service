@@ -49,4 +49,15 @@
   {% else %}
     <p>No cooks are assigned to this dish.</p>
   {% endif %}
+  <h3>Ingredients</h3>
+
+  {% if dish.ingredients.all %}
+    <ul>
+      {% for ingredient in dish.ingredients.all %}
+        <li>{{ ingredient.name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No ingredients are assigned to this dish.</p>
+  {% endif %}
 {% endblock %}

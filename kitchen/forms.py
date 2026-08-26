@@ -45,6 +45,10 @@ class DishForm(forms.ModelForm):
             "cooks",
             "ingredients",
         ]
+        widgets = {
+            "cooks": forms.CheckboxSelectMultiple(),
+            "ingredients": forms.CheckboxSelectMultiple(),
+        }
 
 
 class IngredientForm(forms.ModelForm):

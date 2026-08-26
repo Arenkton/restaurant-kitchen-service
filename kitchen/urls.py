@@ -48,6 +48,11 @@ urlpatterns = [
         name="dish-update",
     ),
     path(
+        "dishes/<int:pk>/delete/",
+        views.DishDeleteView.as_view(),
+        name="dish-delete",
+    ),
+    path(
         "cooks/",
         views.CookListView.as_view(),
         name="cook-list",

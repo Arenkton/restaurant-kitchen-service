@@ -12,11 +12,20 @@
     <table class="table">
       <tr>
         <th>Name</th>
+        <th>Update</th>
       </tr>
 
       {% for dish_type in dish_types %}
         <tr>
           <td>{{ dish_type.name }}</td>
+          <td>
+            <a
+              href="{% url 'kitchen:dish-type-update' pk=dish_type.pk %}"
+              class="btn btn-secondary"
+            >
+              Update
+            </a>
+          </td>
         </tr>
       {% endfor %}
     </table>

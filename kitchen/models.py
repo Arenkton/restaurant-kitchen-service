@@ -23,6 +23,11 @@ class Dish(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     cooks = models.ManyToManyField(Cook)
+    ingredients = models.ManyToManyField(
+        "Ingredient",
+        related_name="dishes",
+        blank=True,
+    )
 
     def __str__(self):
         return self.name
@@ -30,10 +35,6 @@ class Dish(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=100)
-    dishes = models.ManyToManyField(
-        Dish,
-        related_name="ingredients"
-    )
 
     def __str__(self):
         return self.name

@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 
 from kitchen import views
@@ -77,5 +76,25 @@ urlpatterns = [
         "cooks/<int:pk>/delete/",
         views.CookDeleteView.as_view(),
         name="cook-delete",
+    ),
+    path(
+        "ingredients/",
+        views.IngredientListView.as_view(),
+        name="ingredient-list",
+    ),
+    path(
+        "ingredients/create/",
+        views.IngredientCreateView.as_view(),
+        name="ingredient-create",
+    ),
+    path(
+        "ingredients/<int:pk>/update/",
+        views.IngredientUpdateView.as_view(),
+        name="ingredient-update",
+    ),
+    path(
+        "ingredients/<int:pk>/delete/",
+        views.IngredientDeleteView.as_view(),
+        name="ingredient-delete",
     ),
 ]

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from kitchen.models import Cook, Dish, DishType
+from kitchen.models import Cook, Dish, DishType, Ingredient
 
 
 class CookCreationForm(UserCreationForm):
@@ -43,6 +43,11 @@ class DishForm(forms.ModelForm):
             "price",
             "dish_type",
             "cooks",
+            "ingredients",
         ]
 
 
+class IngredientForm(forms.ModelForm):
+    class Meta:
+        model = Ingredient
+        fields = ["name",]

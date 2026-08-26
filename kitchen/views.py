@@ -4,8 +4,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.urls import reverse_lazy
 
-from kitchen.forms import DishTypeForm, DishForm, CookCreationForm, CookUpdateForm
-from kitchen.models import DishType, Dish, Cook
+from kitchen.forms import (
+    CookCreationForm,
+    CookUpdateForm,
+    DishForm,
+    DishTypeForm,
+    IngredientForm,
+)
+from kitchen.models import DishType, Dish, Cook, Ingredient
 
 
 @login_required
@@ -50,7 +56,6 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
     context_object_name = "dish"
     template_name = "kitchen/dish_detail.html"
-    paginate_by = 5
 
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
@@ -104,3 +109,30 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
     template_name = "kitchen/cook_confirm_delete.html"
     success_url = reverse_lazy("kitchen:cook-list")
+
+
+class IngredientListView(LoginRequiredMixin, generic.ListView):
+    model = Ingredient
+    context_object_name = "ingredients"
+    template_name = "kitchen/ingredient_list.html"
+    paginate_by = 5
+
+
+class IngredientCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Ingredient
+    form_class = IngredientForm
+    template_name = "kitchen/ingredient_form.html"
+    success_url = reverse_lazy("kitchen:ingredient-list")
+
+
+class IngredientUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Ingredient
+    form_class = IngredientForm
+    template_name = "kitchen/ingredient_form.html"
+    success_url = reverse_lazy("kitchen:ingredient-list")
+
+
+class IngredientDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Ingredient
+    template_name = "kitchen/ingredient_confirm_delete.html"
+    success_url = reverse_lazy("kitchen:ingredient-list")

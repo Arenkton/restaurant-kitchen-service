@@ -1,22 +1,45 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Dynamic content</h2>
+  <h1 class="mb-4">Dashboard</h1>
 
-  <p>The restaurant has the following record counts:</p>
+  <div class="row">
 
-  <ul>
-    <li>
-      <strong>Dishes:</strong> {{ num_dishes }}
-    </li>
-    <li>
-      <strong>Cooks:</strong> {{ num_cooks }}
-    </li>
-    <li>
-      <strong>Dish types:</strong> {{ num_dish_types }}
-    </li>
-    <li>
-      <strong>Ingredients:</strong> {{ num_ingredients }}
-    </li>
-  </ul>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-primary h-100">
+        <div class="card-body">
+          <div class="small text-muted">Dishes</div>
+          <div class="fs-2 fw-bold">{{ num_dishes }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-success h-100">
+        <div class="card-body">
+          <div class="small text-muted">Cooks</div>
+          <div class="fs-2 fw-bold">{{ num_cooks }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-warning h-100">
+        <div class="card-body">
+          <div class="small text-muted">Dish types</div>
+          <div class="fs-2 fw-bold">{{ num_dish_types }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-danger h-100">
+        <div class="card-body">
+          <div class="small text-muted">Ingredients</div>
+          <div class="fs-2 fw-bold">{{ num_ingredients }}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 {% endblock %}

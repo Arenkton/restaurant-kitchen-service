@@ -23,6 +23,11 @@ urlpatterns = [
         name="dish-type-update",
     ),
     path(
+        "types/<int:pk>/delete/",
+        views.DishTypeDeleteView.as_view(),
+        name="dish-type-delete",
+    ),
+    path(
         "dishes/",
         views.DishListView.as_view(),
         name="dish-list",

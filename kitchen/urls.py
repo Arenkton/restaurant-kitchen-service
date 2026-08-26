@@ -58,6 +58,11 @@ urlpatterns = [
         name="cook-list",
     ),
     path(
+        "cooks/create/",
+        views.CookCreateView.as_view(),
+        name="cook-create",
+    ),
+    path(
         "cooks/<int:pk>/",
         views.CookDetailView.as_view(),
         name="cook-detail",

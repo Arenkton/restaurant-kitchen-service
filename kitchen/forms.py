@@ -1,6 +1,19 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
-from kitchen.models import DishType, Dish
+from kitchen.models import Cook, Dish, DishType
+
+
+class CookCreationForm(UserCreationForm):
+    class Meta:
+        model = Cook
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "years_of_experience",
+        ]
 
 
 class DishTypeForm(forms.ModelForm):

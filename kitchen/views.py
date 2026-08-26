@@ -16,7 +16,14 @@ from kitchen.models import DishType, Dish, Cook, Ingredient
 
 @login_required
 def index(request):
-    return render(request, "kitchen/index.html")
+    context = {
+        "num_dishes": Dish.objects.count(),
+        "num_cooks": Cook.objects.count(),
+        "num_dish_types": DishType.objects.count(),
+        "num_ingredients": Ingredient.objects.count(),
+    }
+
+    return render(request, "kitchen/index.html", context=context)
 
 
 class DishTypeListView(LoginRequiredMixin, generic.ListView):

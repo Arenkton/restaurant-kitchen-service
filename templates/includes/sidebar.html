@@ -1,47 +1,98 @@
-<ul class="sidebar-nav list-group">
+<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+  <div class="sb-sidenav-menu">
+    <div class="nav">
+
+      <div class="sb-sidenav-menu-heading">
+        Main
+      </div>
+
+      <a class="nav-link" href="{% url 'kitchen:index' %}">
+        <div class="sb-nav-link-icon">
+          <i class="bi bi-house"></i>
+        </div>
+        Home
+      </a>
+
+      <div class="sb-sidenav-menu-heading">
+        Kitchen
+      </div>
+
+      <a class="nav-link" href="{% url 'kitchen:dish-type-list' %}">
+        <div class="sb-nav-link-icon">
+          <i class="bi bi-tags"></i>
+        </div>
+        Dish types
+      </a>
+
+      <a class="nav-link" href="{% url 'kitchen:dish-list' %}">
+        <div class="sb-nav-link-icon">
+          <i class="bi bi-egg-fried"></i>
+        </div>
+        Dishes
+      </a>
+
+      <a class="nav-link" href="{% url 'kitchen:cook-list' %}">
+        <div class="sb-nav-link-icon">
+          <i class="bi bi-people"></i>
+        </div>
+        Cooks
+      </a>
+
+      <a class="nav-link" href="{% url 'kitchen:ingredient-list' %}">
+        <div class="sb-nav-link-icon">
+          <i class="bi bi-basket"></i>
+        </div>
+        Ingredients
+      </a>
+
+      <div class="sb-sidenav-menu-heading">
+        Account
+      </div>
+
+      {% if user.is_authenticated %}
+        <a
+          class="nav-link"
+          href="{% url 'kitchen:cook-detail' pk=user.pk %}"
+        >
+          <div class="sb-nav-link-icon">
+            <i class="bi bi-person-circle"></i>
+          </div>
+          {{ user.get_username }}
+        </a>
+
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+
+          <button
+            type="submit"
+            class="nav-link btn btn-link text-start w-100 border-0"
+          >
+            <div class="sb-nav-link-icon">
+              <i class="bi bi-box-arrow-right"></i>
+            </div>
+            Logout
+          </button>
+        </form>
+
+      {% else %}
+        <a
+          class="nav-link"
+          href="{% url 'login' %}?next={{ request.path }}"
+        >
+          <div class="sb-nav-link-icon">
+            <i class="bi bi-box-arrow-in-right"></i>
+          </div>
+          Login
+        </a>
+      {% endif %}
+
+    </div>
+  </div>
+
   {% if user.is_authenticated %}
-    <li class="list-group-item">
-      User:
-      <a href="{% url 'kitchen:cook-detail' pk=user.pk %}">
-        {{ user.get_username }}
-      </a>
-    </li>
-
-    <li class="list-group-item">
-      <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-link p-0">
-          Logout
-        </button>
-      </form>
-    </li>
-  {% else %}
-    <li class="list-group-item">
-      <a href="{% url 'login' %}?next={{ request.path }}">
-        Login
-      </a>
-    </li>
+    <div class="sb-sidenav-footer">
+      <div class="small">Logged in as:</div>
+      {{ user.get_username }}
+    </div>
   {% endif %}
-
-  <br>
-
-  <li class="list-group-item">
-    <a href="{% url 'kitchen:index' %}">Home</a>
-  </li>
-
-  <li class="list-group-item">
-    <a href="{% url 'kitchen:dish-type-list' %}">All dish types</a>
-  </li>
-
-  <li class="list-group-item">
-    <a href="{% url 'kitchen:dish-list' %}">All dishes</a>
-  </li>
-
-  <li class="list-group-item">
-    <a href="{% url 'kitchen:cook-list' %}">All cooks</a>
-  </li>
-
-  <li class="list-group-item">
-    <a href="{% url 'kitchen:ingredient-list' %}">All ingredients</a>
-  </li>
-</ul>
+</nav>

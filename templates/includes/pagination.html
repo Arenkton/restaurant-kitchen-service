@@ -3,7 +3,7 @@
     {% if page_obj.has_previous %}
       <li class="page-item">
         <a
-          href="?page={{ page_obj.previous_page_number }}"
+          href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}"
           class="page-link"
         >
           prev
@@ -20,7 +20,7 @@
     {% if page_obj.has_next %}
       <li class="page-item">
         <a
-          href="?page={{ page_obj.next_page_number }}"
+          href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}"
           class="page-link"
         >
           next

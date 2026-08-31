@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 from kitchen.forms import (
     CookCreationForm,
@@ -30,6 +31,16 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_types"
     template_name = "kitchen/dish_type_list.html"
+    paginate_by = 5
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get("q")
+
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+
+        return queryset
 
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
@@ -57,6 +68,15 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "dishes"
     template_name = "kitchen/dish_list.html"
     paginate_by = 5
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get("q")
+
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+
+        return queryset
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
@@ -91,6 +111,19 @@ class CookListView(LoginRequiredMixin, generic.ListView):
     template_name = "kitchen/cook_list.html"
     paginate_by = 5
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get("q")
+
+        if query:
+            queryset = queryset.filter(
+                Q(username__icontains=query)
+                | Q(first_name__icontains=query)
+                | Q(last_name__icontains=query)
+            )
+
+        return queryset
+
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
@@ -123,6 +156,15 @@ class IngredientListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "ingredients"
     template_name = "kitchen/ingredient_list.html"
     paginate_by = 5
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get("q")
+
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+
+        return queryset
 
 
 class IngredientCreateView(LoginRequiredMixin, generic.CreateView):

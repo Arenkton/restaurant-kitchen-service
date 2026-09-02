@@ -142,36 +142,31 @@ The project includes tests for:
 
 ## Demo
 
-Live website:
-
-```text
-Will be added after deployment
-```
+Live website: https://restaurant-kitchen-service-5yn0.onrender.com
 
 Test user:
-
 ```text
-Username: will be added after deployment
-Password: will be added after deployment
+Username: user
+Password: user12345
 ```
 
 ## Screenshots
 
 ### Dashboard
 
-_Add dashboard screenshot here_
+![Dashboard](docs/screenshots/dashboard.png)
 
 ### Dishes
 
-_Add dishes page screenshot here_
+![Dishes](docs/screenshots/dishes.png)
 
 ### Cooks
 
-_Add cooks page screenshot here_
+![Cooks](docs/screenshots/cooks.png)
 
 ### Ingredients
 
-_Add ingredients page screenshot here_
+![Ingredients](docs/screenshots/ingredients.png)
 
 ## Author
 
